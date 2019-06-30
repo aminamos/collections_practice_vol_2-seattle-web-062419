@@ -1,11 +1,13 @@
 require 'pry'
 
 def begins_with_r(array)
-    if (array.collect {|x| x.start_with?("r") == true}.uniq[0]) == true
+    if array.select {|x| 
+    x.start_with?("r") == false} == []
         true
     else
         false
     end
+      
 end
 
 def contain_a(array)
@@ -45,11 +47,26 @@ def remove_non_strings(array)
     array.delete_if {|x| x.class != String}
 end
 
-def count_elements
+def count_elements(array)
+    # create new hash with new key = :count 
+    # and new value = array.count(x)
+    array.map.with_index do |x,index|
+        array[index][:count] = array.count(x)
+    end
+    array
 end
 
 def merge_data(data1,data2)
-
+    merged = {}
+    data1.each {|key,value|
+        merged[key] = value
+}
+    data2.each {|key,value|
+        merged[key] = value
+}
+    data2.each do |k,v|
+        
+binding.pry
 end
 
 def find_cool(hash)
